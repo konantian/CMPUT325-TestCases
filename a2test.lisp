@@ -74,8 +74,10 @@
 (test-case '1.3.14 (remove-identities '(* (* 1 x) (* (* x 1) (* 2 1)))) '(* x (* x 2)))
 
 ; basic tests for mixing +, -, *
-(test-case '1.4.1 (remove-identities '(+ 0 (* x 1))) 'x)
-(test-case '1.4.2 (remove-identities '(+ (+ 0 0) (* 5 1))) 5)
-(test-case '1.4.3 (remove-identities '(- 10 (+ 0 (* 0 1)))) 10)
-(test-case '1.4.4 (remove-identities '(- 10 10)) '(- 10 10))
-(test-case '1.4.5 (remove-identities '(- 10 10)) '(- 10 10))
+(test-case '1.4.1 (remove-identities '(+ 0 (* x (- 1 0)))) 'x)
+(test-case '1.4.2 (remove-identities '(* 1 (+ x (- 0 0)))) 'x)
+(test-case '1.4.3 (remove-identities '(+ 0 (+ 0 (+ 2 1)))) '(+ 2 1))
+(test-case '1.4.4 (remove-identities '(+ (+ 2 0) (* 4 2))) '(+ 2 (* 4 2)))
+(test-case '1.4.5 (remove-identities '(* 1 (+ x (- x x)))) '(+ X (- X X)))
+(test-case '1.4.6 (remove-identities '(- 2 (+ x (* x 1)))) '(- 2 (+ x x)))
+(test-case '1.4.7 (remove-identities '(- (+ 10 (* x 1)) (+ 10 10))) '(- (+ 10 x) (+ 10 10)))
