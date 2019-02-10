@@ -81,3 +81,25 @@
 (test-case '1.4.5 (remove-identities '(* 1 (+ x (- x x)))) '(+ X (- X X)))
 (test-case '1.4.6 (remove-identities '(- 2 (+ x (* x 1)))) '(- 2 (+ x x)))
 (test-case '1.4.7 (remove-identities '(- (+ 10 (* x 1)) (+ 10 10))) '(- (+ 10 x) (+ 10 10)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; 2. tests for simplify-zeroes
+
+(test-case 2.1 (simplify-zeroes 0) 0)
+(test-case 2.2 (simplify-zeroes '(* x 0)) 0)
+(test-case 2.3 (simplify-zeroes '(* 0 x)) 0)
+(test-case 2.4 (simplify-zeroes '(* 0 0)) 0)
+(test-case 2.5 (simplify-zeroes '(- x x)) 0)
+(test-case 2.6 (simplify-zeroes '(- 0 0)) 0)
+
+(test-case 2.7 (simplify-zeroes '(- x 0)) '(- x 0))
+(test-case 2.8 (simplify-zeroes '(- 0 x)) '(- 0 x))
+(test-case 2.9 (simplify-zeroes '(+ 0 0)) '(+ 0 0))
+(test-case 2.10 (simplify-zeroes '(+ x 0)) '(+ x 0))
+(test-case 2.11 (simplify-zeroes '(+ 0 x)) '(+ 0 x))
+
+(test-case 2.12 (simplify-zeroes '(* (+ 1 2) 0)) 0)
+(test-case 2.13 (simplify-zeroes '(- (+ 4 2) (+ 4 2))) 0)
+(test-case 2.14 (simplify-zeroes '(- (* 3 0) (* 0 3))) 0)
+(test-case 2.15 (simplify-zeroes '(- (+ 4 2) (+ 2 4))) '(- (+ 4 2) (+ 2 4)))
+
