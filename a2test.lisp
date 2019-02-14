@@ -103,3 +103,30 @@
 (test-case 2.14 (simplify-zeroes '(- (* 3 0) (* 0 3))) 0)
 (test-case 2.15 (simplify-zeroes '(- (+ 4 2) (+ 2 4))) '(- (+ 4 2) (+ 2 4)))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; 3. tests for simplify
+;Some examples where one type of simplification enables the other.
+;All the examples from question 1 and 2 should still be simplified 
+;at least as much as before, too.
+
+(test-case 3.1 (simplify '(* 0 0)) 0)
+(test-case 3.2 (simplify '(- 0 0)) 0)
+(test-case 3.3 (simplify '(+ 0 0)) 0)
+(test-case 3.4 (simplify '(+ x x)) '(+ x x))
+(test-case 3.5 (simplify '(* 1 0)) 0)
+(test-case 3.6 (simplify '(* 0 1)) 0)
+
+(test-case 3.7 (simplify '(+ (+ (* x 0) x) 1)) '(+ x 1))
+(test-case 3.8 (simplify '(* (- x 0) 2)) '(* x 2))
+(test-case 3.9 (simplify '(+ (* x 0))) 0)
+(test-case 3.10 (simplify '(- (* x 0) (- 0 x))) '(- 0 (- 0 x)))
+
+(test-case 3.10 (simplify '(* (* 1 x) (- x 0))) '(* x x))
+(test-case 3.11 (simplify '(+ (- (* x 1) x) (* x (- 2 2)))) 0)
+(test-case 3.12 (simplify '(* (* 1 x) (- x 0))) '(* x x))
+(test-case 3.13 (simplify '(+ (- (- x (+ x 2)) 0) (+ 1 (- x x)))) '(+ (- X (+ X 2)) 1))
+(test-case 3.14 (simplify '(+ (+ 0 0) (+ 1 (- x x)))) 1)
+(test-case 3.15 (simplify '(- (+ 10 (* x 1)) (+ 10 10))) '(- (+ 10 x) (+ 10 10)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
