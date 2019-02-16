@@ -118,7 +118,7 @@
 
 (test-case 3.7 (simplify '(+ (+ (* x 0) x) 1)) '(+ x 1))
 (test-case 3.8 (simplify '(* (- x 0) 2)) '(* x 2))
-(test-case 3.9 (simplify '(+ (* x 0))) 0)
+(test-case 3.9 (simplify '(+ (* x 0) 1)) 1)
 (test-case 3.10 (simplify '(- (* x 0) (- 0 x))) '(- 0 (- 0 x)))
 
 (test-case 3.10 (simplify '(* (* 1 x) (- x 0))) '(* x x))
