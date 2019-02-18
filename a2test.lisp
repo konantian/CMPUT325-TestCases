@@ -205,3 +205,10 @@
 (test-case '5.1.14
     (poly-subtract '((0 . 2) (0 . 2)) '((-3 . 3))) '((3 . 3))
 )
+
+; this test checks if the result is sorted correctly
+(test-case '5.1.15
+    (poly-subtract '((5 . -2) (3 . 1) (7 . 0))
+                   '((5 . 3) (5 . 4) (5 . -3) (3 . 1) (7 . 0)))
+    '((-5 . 4) (-5 . 3) (5 . -2) (-5 . -3))
+)
