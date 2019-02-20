@@ -52,8 +52,9 @@
 (test-case '1.2.11 (remove-identities '(- (- x 0) (- x 0))) '(- x x))
 
 (test-case '1.2.12 (remove-identities '(- (- 2 0) 0)) 2)
-(test-case '1.2.13 (remove-identities '(- (- 0 x) 2)) '(- (- 0 x) 2))
-(test-case '1.2.14 (remove-identities '(- (- 2 1) (- (- x 0) 0))) '(- (- 2 1) x))
+(test-case '1.2.13 (remove-identities '(- (- 2 0) (- x 0))) '(- 2 x))
+(test-case '1.2.14 (remove-identities '(- (- 0 x) 2)) '(- (- 0 x) 2))
+(test-case '1.2.15 (remove-identities '(- (- 2 1) (- (- x 0) 0))) '(- (- 2 1) x))
 
 ; basic tests for *
 (test-case '1.3.1 (remove-identities '(* x 2)) '(* x 2))
