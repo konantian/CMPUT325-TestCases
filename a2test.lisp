@@ -312,6 +312,93 @@
                   '((12 . 3) (-13 . 2) (1 . 1) (10 . 0))
 )
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; 5.3 tests for polynomial
+(test-case '5.3.1
+    (polynomial 22)
+    '((22 . 0))
+)
+
+(test-case '5.3.2
+    (polynomial -25)
+    '((-25 . 0))
+)
+
+(test-case '5.3.3
+    (polynomial 0)
+    nil
+)
+
+(test-case '5.3.4
+    (polynomial 'x)
+    '((1 . 1))
+)
+
+(test-case '5.3.5
+    (polynomial '(+ x 1))
+    '((1 . 1) (1 . 0))
+)
+
+(test-case '5.3.6
+    (polynomial '(+ 1 0))
+    '((1 . 0))
+)
+
+(test-case '5.3.7
+    (polynomial '(+ 0 1))
+    '((1 . 0))
+)
+
+(test-case '5.3.8
+    (polynomial '(+ (+ x 1) 1))
+    '((1 . 1) (2 . 0))
+)
+
+(test-case '5.3.9
+    (polynomial '(+ (+ 2 0) 0))
+    '((2 . 0))
+)
+
+(test-case '5.3.10
+    (polynomial '(- (- x 0) 1))
+    '((1 . 1) (-1 . 0))
+)
+
+(test-case '5.3.11
+    (polynomial '(- (- 2 0) (- x 0)))
+    '((-1 . 1) (2 . 0))
+)
+
+(test-case '5.3.12
+    (polynomial '(* (* 1 1) (* 3 1)))
+    '((3 . 0))
+)
+
+(test-case '5.3.13
+    (polynomial '(* 1 (+ x (- x x))))
+    '((1 . 1))
+)
+
+(test-case '5.3.14
+    (polynomial '(- 2 (+ x (* x 1))))
+    '((-2 . 1) (2 . 0))
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
