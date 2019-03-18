@@ -12,7 +12,7 @@ Tests for Question 1
 --------------------------------------------------------- */
 :- begin_tests(q1).
 
-test('alternate 1', tru(R == [a,1,b,2,c,3])) :-
+test('alternate 1', true(R == [a,1,b,2,c,3])) :-
     alternate([a,b,c],[1,2,3],R).
 test('alternate 2', true(R == [a, d, b, e, c, f, 1, 3, 2, 4])) :-
     alternate([a,b,c,1,2],[d,e,f,3,4],R).
@@ -77,7 +77,96 @@ test('umem 8 ', all(X == [1,a,2,b,3,c,4,d,e,f,g])) :-
     umem(X, [1,a,1,a,2,b,3,c,4,d,3,c,4,e,f,g]).
 
 :- end_tests(q3).
+/* ---------------------------------------------------------
+Tests for Question 4.1
+--------------------------------------------------------- */
+:- begin_tests(q4_1_fullDB).
+
+test('required 1', true(L == [])) :-
+    required(cmput174, L).
+test('required 2', true(L == [cmput174])) :-
+    required(cmput175, L).
+test('required 3', true(L == [cmput174, cmput175, cmput204, cmput272])) :-
+    required(cmput340, L).
+test('required 4', true(L == [cmput174, cmput175])) :-
+    required(cmput201, L).
+test('required 5', true(L == [cmput174, cmput175,cmput272])) :-
+    required(cmput204, L).
+test('required 6', true(L == [cmput174, cmput175, cmput201, cmput204, cmput229, cmput272])) :-
+    required(cmput379, L).
+test('required 7', true(L == [cmput174, cmput175, cmput204, cmput272, cmput291])) :-
+    required(cmput391, L).
+test('required 8', true(L == [cmput174, cmput175, cmput201, cmput204, cmput229, cmput272, cmput379])) :-
+    required(cmput481, L).
+test('required 9', true(L == [])) :-
+    required(cmput328, L).
+test('required 10', true(L == [cmput174, cmput175, cmput201, cmput204, cmput229, cmput272])) :-
+    required(cmput325, L).
+
+:- end_tests(q4_1_fullDB).
+
+/* ---------------------------------------------------------
+Tests for Question 4.2
+--------------------------------------------------------- */
+:- begin_tests(q4_2_fullDB).
+test('can_take 1') :-
+    findall(C,can_take([cmput174, cmput175, cmput229, cmput272, cmput325], C),L),
+    permutation(L,[cmput101, cmput201, cmput204, cmput206, cmput210, cmput250, 
+    cmput275, cmput291, cmput296,cmput297,cmput299,cmput396,cmput399,cmput400,cmput418,
+    cmput419,cmput495,cmput496,cmput497,cmput498,cmput499]), !.
+test('can_take 2') :-
+    findall(C,can_take([cmput101,cmput174, cmput175, cmput204, cmput272], C),L),
+    permutation(L,[cmput201, cmput206, cmput210, cmput250, cmput275,
+     cmput291, cmput296, cmput297, cmput299, cmput304, cmput340, cmput366, cmput396,
+     cmput399,cmput400,cmput418,cmput419,cmput495,cmput496,cmput497,cmput498,cmput499]), !.
+test('can_take 3') :-
+    findall(C,can_take([cmput101,cmput174, cmput175, cmput204,cmput206,cmput229, cmput272, cmput325], C),L),
+    permutation(L,[cmput201, cmput210,cmput250,
+    cmput275, cmput291, cmput296,cmput297,cmput299,cmput304,cmput340,cmput366,cmput396,cmput399,cmput400,cmput418,
+    cmput419,cmput495,cmput496,cmput497,cmput498,cmput499]), !.
+test('can_take 4') :-
+    findall(C,can_take([], C),L),
+    permutation(L,[cmput101, cmput174, cmput250, 
+    cmput275, cmput296,cmput297,cmput299,cmput396,cmput399,cmput400,cmput418,
+    cmput419,cmput495,cmput496,cmput497,cmput498,cmput499]), !.
+test('can_take 5') :-
+    findall(C,can_take([cmput174, cmput175, cmput272, cmput204], C),L),
+    permutation(L,[cmput101, cmput201, cmput206, cmput210, cmput250, 
+    cmput275, cmput291, cmput296,cmput297,cmput299,cmput304,cmput340,
+    cmput366,cmput396,cmput399,cmput400,cmput418,
+    cmput419,cmput495,cmput496,cmput497,cmput498,cmput499]), !.
+:- end_tests(q4_2_fullDB).
+
+/* ---------------------------------------------------------
+Tests for Question 4.3
+--------------------------------------------------------- */
+:- begin_tests(q4_3_full_cycleDB).
+test('in_cycle 1', all(Cycle == [[cmput174, cmput272, cmput174]])) :-
+    in_cycle(cmput174, Cycle).
+test('in_cycle 2', all(Cycle == [[cmput229, cmput429, cmput229]])) :-
+    in_cycle(cmput229, Cycle).
+test('in_cycle 3', all(Cycle == [[cmput272, cmput174, cmput272]])) :-
+    in_cycle(cmput272, Cycle).
+test('in_cycle 4', all(Cycle == [[cmput302, cmput302]])) :-
+    in_cycle(cmput302, Cycle).
+test('in_cycle 5', all(Cycle == [[cmput306, cmput340, cmput306]])) :-
+    in_cycle(cmput306, Cycle).
+test('in_cycle 6', all(Cycle == [[cmput340, cmput306, cmput340]])) :-
+    in_cycle(cmput340, Cycle).
+test('in_cycle 7', all(Cycle == [[cmput404, cmput404]])) :-
+    in_cycle(cmput404, Cycle).
+test('in_cycle 8', all(Cycle == [[cmput429, cmput229, cmput429]])) :-
+    in_cycle(cmput429, Cycle).
+test('in_cycle 9', all(Cycle == [])) :-
+    in_cycle(cmput499, Cycle).
+:- end_tests(q4_3_full_cycleDB).
 
 :- run_tests(q1).
 :- run_tests(q2).
 :- run_tests(q3).
+:- [a3_fullDB].
+:- run_tests(q4_1_fullDB).
+:- run_tests(q4_2_fullDB).
+:- [a3_full_cycleDB].
+:- run_tests(q4_3_full_cycleDB).
+
