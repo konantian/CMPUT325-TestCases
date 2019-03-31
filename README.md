@@ -1,4 +1,4 @@
-[![HitCount](http://hits.dwyl.io/konantian/CMPUT325-TestCases.svg)](http://hits.dwyl.io/konantian/CMPUT325-TestCases)
+[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)[![HitCount](http://hits.dwyl.io/konantian/CMPUT325-TestCases.svg)](http://hits.dwyl.io/konantian/CMPUT325-TestCases)
 
 # CMPUT325-TestCases
 ## Description
